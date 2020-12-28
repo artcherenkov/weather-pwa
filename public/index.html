@@ -18,6 +18,9 @@
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('./service-worker.js')
           .then((reg) => console.log('Success: ', reg.scope))
+          .then(() => navigator.serviceWorker.ready
+              .then((worker) => worker.sync.register('syncdata'))
+          )
           .catch((err) => console.log('Failure: ', err))
         });
       }
